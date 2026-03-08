@@ -1,7 +1,6 @@
-# ── Stage 1: Build ───────────────────────────────────────────────────────────
-FROM node:22-alpine AS build
+FROM node:22-alpine
 
-RUN apk add --no-cache python3 make g++
+RUN apk add --no-cache python3 make g++ vips-dev
 
 WORKDIR /app
 
@@ -11,22 +10,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# ── Stage 2: Production ─────────────────────────────────────────────────────
-FROM node:22-alpine AS production
-
-RUN apk add --no-cache vips-dev
-
-WORKDIR /app
-
 ENV NODE_ENV=production
-
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/dist/config ./config
-COPY ./public ./public
-COPY ./database ./database
 
 EXPOSE 1337
 
