@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weekly_discovers",
+  "info": {
+    "singularName": "weekly-discover",
+    "pluralName": "weekly-discovers",
+    "displayName": "Weekly Discover",
+    "description": "Curated weekly electronic music picks"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "city": {
+      "type": "enumeration",
+      "enum": ["barcelona", "madrid"],
+      "required": true
+    },
+    "tags": {
+      "type": "json",
+      "required": true
+    },
+    "coverImageSrc": {
+      "type": "string",
+      "default": "/placeholders/urban-cover.svg"
+    },
+    "coverImageAlt": {
+      "type": "string"
+    },
+    "episode": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "trackArtist": {
+      "type": "string",
+      "required": true
+    },
+    "trackLabel": {
+      "type": "string"
+    },
+    "trackReleaseDate": {
+      "type": "string"
+    },
+    "bpm": {
+      "type": "integer"
+    },
+    "musicalKey": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "verdict": {
+      "type": "text"
+    },
+    "technicalBite": {
+      "type": "text"
+    },
+    "moodScenario": {
+      "type": "text"
+    },
+    "energyLevel": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "setMoment": {
+      "type": "enumeration",
+      "enum": ["warm-up", "peak-time", "closing", "after-hours"]
+    },
+    "embedUrl": {
+      "type": "string"
+    }
+  }
+}
