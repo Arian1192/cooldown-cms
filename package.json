@@ -5,10 +5,12 @@
   "description": "A Strapi application",
   "scripts": {
     "build": "strapi build",
+    "check:toolchain": "node -e \"const node = process.versions.node; if (!/^(20|21|22|23|24)\\./.test(node)) { console.error('Expected Node 20-24, found ' + node); process.exit(1); } console.log('Toolchain OK: Node ' + node);\"",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
+    "typecheck": "tsc --noEmit",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",

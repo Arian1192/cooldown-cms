@@ -1,0 +1,62 @@
+name: CMS Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Toolchain check
+        run: npm run check:toolchain
+
+      - name: Commit convention check
+        run: |
+          set -euo pipefail
+          RE='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._-]+\))?!?: .+'
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            RANGE="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          else
+            if git rev-parse HEAD~1 >/dev/null 2>&1; then
+              RANGE="HEAD~1..HEAD"
+            else
+              RANGE="HEAD"
+            fi
+          fi
+
+          MESSAGES="$(git log --format=%s ${RANGE})"
+          [ -n "$MESSAGES" ] || { echo "No commit messages to validate in range ${RANGE}"; exit 0; }
+
+          echo "Validating commit messages in range ${RANGE}"
+          while IFS= read -r msg; do
+            if ! echo "$msg" | grep -Eq "$RE"; then
+              echo "Invalid commit message: $msg"
+              echo "Expected Conventional Commit, e.g. feat(cms): add weekly discover validation"
+              exit 1
+            fi
+          done <<< "$MESSAGES"
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
