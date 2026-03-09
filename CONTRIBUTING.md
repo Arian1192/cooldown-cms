@@ -27,6 +27,12 @@ When working on this repo:
 4. Push and open a PR to `main`
 5. Merge after checks pass and review is complete
 
+Commit convention:
+- Use Conventional Commits for commit subjects:
+  - `feat(cms): ...`
+  - `fix(api): ...`
+  - `chore(ci): ...`
+
 ## Local Development
 
 ```bash
@@ -34,6 +40,20 @@ cp .env.example .env      # fill in secrets
 npm install
 npm run develop
 ```
+
+## Quality gates
+
+Run before opening a PR:
+
+```bash
+npm run check:toolchain
+npm run typecheck
+npm run build
+```
+
+Reference checklists:
+- `ACCESSIBILITY.md`
+- `PERFORMANCE.md`
 
 ## Production Deployment
 
