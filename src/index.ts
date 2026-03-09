@@ -1,5 +1,37 @@
 import type { Core } from '@strapi/strapi';
 
+function readEnv(name: string): string | undefined {
+  const value = process.env[name];
+  const trimmed = value?.trim();
+  return trimmed && trimmed.length > 0 ? trimmed : undefined;
+}
+
+function requireEnv(name: string): void {
+  if (!readEnv(name)) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+}
+
+function validateCriticalEnv(): void {
+  const requiredAlways = [
+    'APP_KEYS',
+    'API_TOKEN_SALT',
+    'ADMIN_JWT_SECRET',
+    'TRANSFER_TOKEN_SALT',
+    'JWT_SECRET',
+    'ENCRYPTION_KEY',
+  ];
+
+  for (const key of requiredAlways) {
+    requireEnv(key);
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    requireEnv('STRAPI_URL');
+    requireEnv('SITE_URL');
+  }
+}
+
 const weeklySeed = [
   {
     slug: 'discover-1',
@@ -91,7 +123,9 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register(/* { strapi }: { strapi: Core.Strapi } */) {
+    validateCriticalEnv();
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
