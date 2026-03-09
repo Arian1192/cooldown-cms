@@ -3,17 +3,17 @@
 ## Branch Strategy
 
 ```
-main      ← production (auto-deploys to VPS on push)
-develop   ← development (working branch)
+main      ← single source of truth (PR-only)
+          ← production deploys to VPS on push
 ```
 
 ### Rules
 
 | Action | How |
 |---|---|
-| **New feature / fix** | Branch from `develop` → PR to `develop` |
-| **Deploy to production** | PR from `develop` → `main` (triggers GitHub Actions auto-deploy) |
-| **Hotfix** | Branch from `main` → PR to `main` + cherry-pick to `develop` |
+| **New feature / fix** | Branch from `main` → PR to `main` |
+| **Deploy to production** | Merge PR to `main` (triggers GitHub Actions auto-deploy) |
+| **Hotfix** | Branch from `main` → PR to `main` |
 
 **Never push directly to `main`.**
 
@@ -21,11 +21,11 @@ develop   ← development (working branch)
 
 When working on this repo:
 
-1. Always start from `develop`: `git checkout develop && git pull`
+1. Always start from `main`: `git checkout main && git pull`
 2. Create a feature branch: `git checkout -b feat/your-feature`
 3. Make your changes and commit
-4. Push and open a PR to `develop`
-5. Only merge `develop → main` when ready to deploy
+4. Push and open a PR to `main`
+5. Merge after checks pass and review is complete
 
 ## Local Development
 
