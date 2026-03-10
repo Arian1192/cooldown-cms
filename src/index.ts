@@ -137,6 +137,33 @@ const weeklySeedEs: WeeklySeedEntry[] = [
     setMoment: 'peak-time',
     embedUrl: 'https://open.spotify.com/track/5UsfWcP6SThHlZ4oAgx7ge',
   },
+  {
+    slug: 'discover-4',
+    title: 'ANNA - Hidden Beauties',
+    excerpt:
+      'Techno melodico con textura oscura y progresion sostenida. Construccion precisa para sets largos.',
+    date: '2026-02-10',
+    city: 'madrid',
+    tags: ['techno', 'melodic'],
+    coverImageSrc: '/placeholders/urban-cover.svg',
+    coverImageAlt: 'ANNA - Hidden Beauties',
+    episode: 4,
+    trackArtist: 'ANNA',
+    trackLabel: 'Afterlife',
+    trackReleaseDate: 'Jan 2024',
+    bpm: 128,
+    musicalKey: 'F Minor',
+    rating: 4,
+    verdict:
+      'Track de tension constante que funciona tanto en warm-up avanzado como en subida a peak-time.',
+    technicalBite:
+      'Capas de sintes con automation lenta, percusion seca y low-end controlado para PA grande.',
+    moodScenario:
+      'Primera hora fuerte de la noche: sala llena, luces bajas y foco total en la narrativa del set.',
+    energyLevel: 4,
+    setMoment: 'warm-up',
+    embedUrl: 'https://open.spotify.com/track/6fpkN3e2QfCj8fP2xg5nbI',
+  },
 ];
 
 const weeklySeedEn: WeeklySeedEntry[] = [
@@ -218,6 +245,33 @@ const weeklySeedEn: WeeklySeedEntry[] = [
     energyLevel: 4,
     setMoment: 'peak-time',
     embedUrl: 'https://open.spotify.com/track/5UsfWcP6SThHlZ4oAgx7ge',
+  },
+  {
+    slug: 'discover-4',
+    title: 'ANNA - Hidden Beauties',
+    excerpt:
+      'Melodic techno with dark texture and sustained progression. Precise construction for long sets.',
+    date: '2026-02-10',
+    city: 'madrid',
+    tags: ['techno', 'melodic'],
+    coverImageSrc: '/placeholders/urban-cover.svg',
+    coverImageAlt: 'ANNA - Hidden Beauties',
+    episode: 4,
+    trackArtist: 'ANNA',
+    trackLabel: 'Afterlife',
+    trackReleaseDate: 'Jan 2024',
+    bpm: 128,
+    musicalKey: 'F Minor',
+    rating: 4,
+    verdict:
+      'A steadily tense track that works in late warm-up and in the climb toward peak-time.',
+    technicalBite:
+      'Layered synths with slow automation, dry percussion, and controlled low-end for large PA systems.',
+    moodScenario:
+      'First strong hour of the night: packed room, low lights, and full focus on set storytelling.',
+    energyLevel: 4,
+    setMoment: 'warm-up',
+    embedUrl: 'https://open.spotify.com/track/6fpkN3e2QfCj8fP2xg5nbI',
   },
 ];
 
