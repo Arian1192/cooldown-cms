@@ -10,12 +10,16 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "slug": {
       "type": "uid",
       "targetField": "title",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "title": {
       "type": "string",
@@ -47,8 +51,7 @@
     },
     "episode": {
       "type": "integer",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "trackArtist": {
       "type": "string",
