@@ -27,12 +27,21 @@ function toPublicPayload(entry: any) {
     energyLevel: attrs.energyLevel,
     setMoment: attrs.setMoment,
     embedUrl: attrs.embedUrl,
+    locale: attrs.locale,
   };
+}
+
+function readLocale(query: Record<string, unknown>) {
+  const locale = typeof query.locale === 'string' ? query.locale.trim() : '';
+  return locale.length > 0 ? locale : 'es';
 }
 
 export default {
   async list(ctx: any) {
+    const locale = readLocale(ctx.query ?? {});
+
     const rows = await strapi.db.query(uid).findMany({
+      where: { locale },
       orderBy: { episode: 'asc' },
     });
 
@@ -48,8 +57,10 @@ export default {
       return ctx.badRequest('Missing slug');
     }
 
+    const locale = readLocale(ctx.query ?? {});
+
     const row = await strapi.db.query(uid).findOne({
-      where: { slug },
+      where: { slug, locale },
     });
 
     if (!row) {
