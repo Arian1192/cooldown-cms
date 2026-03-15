@@ -9,8 +9,7 @@ const config: Core.Config.Middlewares = [
     config: {
       origin: [
         'http://localhost:3000',
-        'https://cooldown-roan.vercel.app',
-        /\.vercel\.app$/,
+        'https://cooldown.ariancoro.com',
       ],
     },
   },
