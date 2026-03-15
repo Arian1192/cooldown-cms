@@ -109,3 +109,35 @@ npm run build
 ```
 
 Quality workflow: `.github/workflows/quality.yml`
+
+## Coolify deployment notes
+
+This repository is ready for Docker-based deployment in Coolify using the included `Dockerfile`.
+
+- Build Pack: `Dockerfile`
+- Dockerfile Location: `./Dockerfile`
+- Port: `1337`
+- Healthcheck Path: `/admin`
+
+Set these required runtime variables in Coolify (see `.env.production.example`):
+
+- `POSTGRES_PASSWORD`
+- `APP_KEYS`
+- `API_TOKEN_SALT`
+- `ADMIN_JWT_SECRET`
+- `TRANSFER_TOKEN_SALT`
+- `JWT_SECRET`
+- `ENCRYPTION_KEY`
+
+Recommended public URLs:
+
+- `STRAPI_URL` (for this CMS instance, e.g. `https://cms.cooldown.ariancoro.com`)
+- `SITE_URL` (frontend URL, e.g. `https://cooldown.ariancoro.com`)
+
+If deploying Postgres separately in Coolify, set:
+
+- `DATABASE_HOST`
+- `DATABASE_PORT`
+- `DATABASE_NAME`
+- `DATABASE_USERNAME`
+- `DATABASE_PASSWORD`
